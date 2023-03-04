@@ -107,13 +107,13 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['COLUMN_NAME'])
                         text.append(" ")
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
-                        if temp_df.iloc[i]['DATA_SCALE'] != 0:
+                        if temp_df.iloc[i]['DATA_SCALE'] != 'NaN':
                             text.append("(")
                             text.append(temp_df.iloc[i]['DATA_PRECISION'])
                             text.append(",")
                             text.append(temp_df.iloc[i]['DATA_SCALE'])
                             text.append(") ")
-                        elif temp_df.iloc[i]['DATA_LENGTH'] != 0:
+                        elif temp_df.iloc[i]['DATA_LENGTH'] != 'NaN':
                             text.append("(")
                             text.append(temp_df.iloc[i]['DATA_LENGTH'])
                             text.append(") ")
@@ -170,13 +170,13 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['COLUMN_NAME'])
                         text.append(" ")
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
-                        if temp_df.iloc[i]['DATA_SCALE'] != 0:
+                        if temp_df.iloc[i]['DATA_SCALE'] != 'NaN':
                             text.append("(")
                             text.append(temp_df.iloc[i]['DATA_PRECISION'])
                             text.append(",")
                             text.append(temp_df.iloc[i]['DATA_SCALE'])
                             text.append(") ")
-                        elif temp_df.iloc[i]['DATA_LENGTH'] != 0:
+                        elif temp_df.iloc[i]['DATA_LENGTH'] != 'NaN':
                             text.append("(")
                             text.append(temp_df.iloc[i]['DATA_LENGTH'])
                             text.append(") ")
