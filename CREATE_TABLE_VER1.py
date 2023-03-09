@@ -109,9 +109,9 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
                         if pd.notnull(temp_df.iloc[i]['DATA_SCALE']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_PRECISION'].replace(',','')))
+                            text.append(int(temp_df.iloc[i]['DATA_PRECISION']))
                             text.append(",")
-                            text.append(int(temp_df.iloc[i]['DATA_SCALE'].replace(',','')))
+                            text.append(int(temp_df.iloc[i]['DATA_SCALE']))
                             text.append(") ")
                         elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
@@ -123,8 +123,8 @@ class Exam(QWidget):
                             text.append("NOT NULL ")
                         if temp_df.iloc[i]['PK']=='PK':
                             pk_cnt +=1
-                            text.append(",")
-                            comment=temp_df.iloc[i]['TABLE_COMMENTS']
+                        text.append(",")
+                        comment=temp_df.iloc[i]['TABLE_COMMENTS']
                     if pk_cnt != 0 :
                         text.append("PRIMARY KEY (")
                     for i in range(0,len(temp_df)):
@@ -174,9 +174,9 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
                         if pd.notnull(temp_df.iloc[i]['DATA_SCALE']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_PRECISION'].replace(',','')))
+                            text.append(int(temp_df.iloc[i]['DATA_PRECISION']))
                             text.append(",")
-                            text.append(int(temp_df.iloc[i]['DATA_SCALE'].replace(',','')))
+                            text.append(int(temp_df.iloc[i]['DATA_SCALE']))
                             text.append(") ")
                         elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
