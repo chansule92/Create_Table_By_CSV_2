@@ -109,13 +109,13 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
                         if pd.notnull(temp_df.iloc[i]['DATA_SCALE']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_PRECISION']))
+                            text.append(int(temp_df.iloc[i]['DATA_PRECISION'].replace(',','')))
                             text.append(",")
-                            text.append(int(temp_df.iloc[i]['DATA_SCALE']))
+                            text.append(int(temp_df.iloc[i]['DATA_SCALE'].replace(',','')))
                             text.append(") ")
                         elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_LENGTH']))
+                            text.append(int(temp_df.iloc[i]['DATA_LENGTH'].replace(',','')))
                             text.append(") ")
                         else:
                             text.append(" ")
@@ -174,13 +174,13 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
                         if pd.notnull(temp_df.iloc[i]['DATA_SCALE']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_PRECISION']))
+                            text.append(int(temp_df.iloc[i]['DATA_PRECISION'].replace(',','')))
                             text.append(",")
-                            text.append(int(temp_df.iloc[i]['DATA_SCALE']))
+                            text.append(int(temp_df.iloc[i]['DATA_SCALE'].replace(',','')))
                             text.append(") ")
                         elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_LENGTH']))
+                            text.append(int(temp_df.iloc[i]['DATA_LENGTH'].replace(',','')))
                             text.append(") ")
                         else:
                             text.append(" ")
