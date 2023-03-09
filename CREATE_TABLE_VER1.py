@@ -135,7 +135,7 @@ class Exam(QWidget):
                     text.append(") );")
                     comment_text=[]
                     comment_text.append("COMMENT ON TABLE "+j)
-                    comment_text.append("IS '"+comment)
+                    comment_text.append("IS '"+str(comment))
                     comment_text.append("';")
                     for i in range(0,len(temp_df)):
                         if temp_df.iloc[i]['TABLE_NAME']==j:
