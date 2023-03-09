@@ -107,15 +107,15 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['COLUMN_NAME'])
                         text.append(" ")
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
-                        if temp_df.iloc[i]['DATA_SCALE'] != 'NaN':
+                        if pd.notnull(temp_df.iloc[i]['DATA_SCALE']):
                             text.append("(")
-                            text.append(temp_df.iloc[i]['DATA_PRECISION'])
+                            text.append(int(temp_df.iloc[i]['DATA_PRECISION']))
                             text.append(",")
-                            text.append(temp_df.iloc[i]['DATA_SCALE'])
+                            text.append(int(temp_df.iloc[i]['DATA_SCALE']))
                             text.append(") ")
-                        elif temp_df.iloc[i]['DATA_LENGTH'] != 'NaN':
+                        elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
-                            text.append(temp_df.iloc[i]['DATA_LENGTH'])
+                            text.append(int(temp_df.iloc[i]['DATA_LENGTH']))
                             text.append(") ")
                         else:
                             text.append(" ")
@@ -134,7 +134,9 @@ class Exam(QWidget):
                     text.pop(-1)
                     text.append(") );")
                     comment_text=[]
-                    comment_text.append("COMMENT ON TABLE "+j+"IS '"+comment+"';")
+                    comment_text.append("COMMENT ON TABLE "+j)
+                    comment_text.append("IS '"+comment)
+                    comment_text.append("';")
                     for i in range(0,len(temp_df)):
                         if temp_df.iloc[i]['TABLE_NAME']==j:
                             comment_text.append("COMMENT ON COLUMN "+j+"."+temp_df.iloc[i]["COLUMN_NAME"]+" IS '")
@@ -170,15 +172,15 @@ class Exam(QWidget):
                         text.append(temp_df.iloc[i]['COLUMN_NAME'])
                         text.append(" ")
                         text.append(temp_df.iloc[i]['DATA_TYPE'])
-                        if temp_df.iloc[i]['DATA_SCALE'] != 'NaN':
+                        if pd.notnull(temp_df.iloc[i]['DATA_SCALE']):
                             text.append("(")
-                            text.append(temp_df.iloc[i]['DATA_PRECISION'])
+                            text.append(int(temp_df.iloc[i]['DATA_PRECISION']))
                             text.append(",")
-                            text.append(temp_df.iloc[i]['DATA_SCALE'])
+                            text.append(int(temp_df.iloc[i]['DATA_SCALE']))
                             text.append(") ")
-                        elif temp_df.iloc[i]['DATA_LENGTH'] != 'NaN':
+                        elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
-                            text.append(temp_df.iloc[i]['DATA_LENGTH'])
+                            text.append(int(temp_df.iloc[i]['DATA_LENGTH']))
                             text.append(") ")
                         else:
                             text.append(" ")
