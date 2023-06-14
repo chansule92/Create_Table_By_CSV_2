@@ -115,7 +115,7 @@ class Exam(QWidget):
                             text.append(") ")
                         elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_LENGTH'].replace(',','')))
+                            text.append(int(temp_df.iloc[i]['DATA_LENGTH']))
                             text.append(") ")
                         else:
                             text.append(" ")
@@ -180,7 +180,7 @@ class Exam(QWidget):
                             text.append(") ")
                         elif pd.notnull(temp_df.iloc[i]['DATA_LENGTH']):
                             text.append("(")
-                            text.append(int(temp_df.iloc[i]['DATA_LENGTH'].replace(',','')))
+                            text.append(int(temp_df.iloc[i]['DATA_LENGTH']))
                             text.append(") ")
                         else:
                             text.append(" ")
