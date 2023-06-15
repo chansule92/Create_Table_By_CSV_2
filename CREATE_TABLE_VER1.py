@@ -135,12 +135,12 @@ class Exam(QWidget):
                             text.append("_sequence")
                         elif pd.notnull(temp_df.iloc[i]['DEFAULT']):
                             text.append("DEFAULT ")
-                            if type(temp_df.iloc[i]['DEFAULT']) == str:
+                            try:
+                                text.append(int(temp_df.iloc[i]['DEFAULT']))
+                            except:
                                 text.append("'")
                                 text.append(temp_df.iloc[i]['DEFAULT'])
                                 text.append("'")
-                            else:
-                                text.append(temp_df.iloc[i]['DEFAULT'])
                             text.append(" ")
                         if temp_df.iloc[i]['NULLABLE']=='N':
                             text.append("NOT NULL ")
@@ -211,12 +211,12 @@ class Exam(QWidget):
                             text.append("NOT NULL ")
                         if pd.notnull(temp_df.iloc[i]['DEFAULT']):
                             text.append("DEFAULT ")
-                            if type(temp_df.iloc[i]['DEFAULT']) == str:
+                            try:
+                                text.append(int(temp_df.iloc[i]['DEFAULT']))
+                            except:
                                 text.append("'")
                                 text.append(temp_df.iloc[i]['DEFAULT'])
                                 text.append("'")
-                            else:
-                                text.append(temp_df.iloc[i]['DEFAULT'])
                             text.append(" ")
                         if pd.notnull(temp_df.iloc[i]['EXTRA']):
                             text.append(temp_df.iloc[i]['EXTRA'])
