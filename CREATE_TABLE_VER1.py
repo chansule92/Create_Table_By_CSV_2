@@ -90,7 +90,7 @@ class Exam(QWidget):
     def CreateTable(self):
         try:
             #CSV파일읽어오기
-            df=pd.read_csv(self.fileName[0],encoding='utf8')
+            df=pd.read_csv(self.fileName[0],encoding='cp949')
             #오라클
             if self.DB_TYPE == 'oracle':
                 table_list=[]
@@ -102,6 +102,7 @@ class Exam(QWidget):
                     text=[]
                     pk_cnt=0
                     temp_df=df.loc[df['TABLE_NAME']==j]
+                    #temp_df.fillna('NULL')
                     text.append("CREATE TABLE "+j+"(")
                     for i in range(0,len(temp_df)):
                         text.append(temp_df.iloc[i]['COLUMN_NAME'])
@@ -186,6 +187,18 @@ class Exam(QWidget):
                             text.append(" ")
                         if temp_df.iloc[i]['NULLABLE']=='N':
                             text.append("NOT NULL ")
+                        if pd.notnull(temp_df.iloc[i]['DEFAULT']):
+                            text.append("DEFAULT ")
+                            if type(temp_df.iloc[i]['DEFAULT']) == str:
+                                text.append("'")
+                                text.append(temp_df.iloc[i]['DEFAULT'])
+                                text.append("'")
+                            else:
+                                text.append(temp_df.iloc[i]['DEFAULT'])
+                            text.append(" ")
+                        if pd.notnull(temp_df.iloc[i]['EXTRA']):
+                            text.append(temp_df.iloc[i]['EXTRA'])
+                            text.append(" ")
                         if temp_df.iloc[i]['PK']=='PK':
                             pk_cnt +=1
                         if temp_df.iloc[i]['COLUMN_COMMENTS']=='':
