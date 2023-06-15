@@ -88,9 +88,9 @@ class Exam(QWidget):
 
     #DDL 생성함수
     def CreateTable(self):
-        try:
+        #try:
             #CSV파일읽어오기
-            df=pd.read_csv(self.fileName[0],encoding='cp949')
+            df=pd.read_csv(self.fileName[0],encoding='utf8',thousands = ',')
             #오라클
             if self.DB_TYPE == 'oracle':
                 table_list=[]
@@ -102,6 +102,13 @@ class Exam(QWidget):
                     text=[]
                     pk_cnt=0
                     temp_df=df.loc[df['TABLE_NAME']==j]
+                    auto_increment_column = temp_df[temp_df['EXTRA']=='auto_increment']
+                    for k in range(0,len(auto_increment_column)):
+                        text.append("CREATE SEQUENCE ")
+                        text.append(auto_increment_column['TABLE_NAME'].iloc[0])
+                        text.append("_")
+                        text.append(auto_increment_column['COLUMN_NAME'].iloc[0])
+                        text.append("_sequence START WITH 1 INCREMENT BY 1;")
                     #temp_df.fillna('NULL')
                     text.append("CREATE TABLE "+j+"(")
                     for i in range(0,len(temp_df)):
@@ -119,6 +126,21 @@ class Exam(QWidget):
                             text.append(int(temp_df.iloc[i]['DATA_LENGTH']))
                             text.append(") ")
                         else:
+                            text.append(" ")
+                        if temp_df.iloc[i]['EXTRA']=='auto_increment':
+                            text.append("DEFAULT ")
+                            text.append(temp_df.iloc[i]['TABLE_NAME'])
+                            text.append("_")
+                            text.append(temp_df.iloc[i]['COLUMN_NAME'])
+                            text.append("_sequence")
+                        elif pd.notnull(temp_df.iloc[i]['DEFAULT']):
+                            text.append("DEFAULT ")
+                            if type(temp_df.iloc[i]['DEFAULT']) == str:
+                                text.append("'")
+                                text.append(temp_df.iloc[i]['DEFAULT'])
+                                text.append("'")
+                            else:
+                                text.append(temp_df.iloc[i]['DEFAULT'])
                             text.append(" ")
                         if temp_df.iloc[i]['NULLABLE']=='N':
                             text.append("NOT NULL ")
@@ -235,8 +257,8 @@ class Exam(QWidget):
                 with open(self.dirName + """/{}.txt""".format('ALL'),'w',encoding="UTF-8") as f:
                     f.write(all_create)
                 return self.result.setText(str(len(query_list)+1)+ '개의 CREATE 파일이 생성 되었습니다')
-        except AttributeError:
-            return self.result.setText("DB타입이 선택되지않았거나 파일, 저장경로가 선택되지않았습니다.")
+        #except AttributeError:
+        #    return self.result.setText("DB타입이 선택되지않았거나 파일, 저장경로가 선택되지않았습니다.")
 
 
     def tglStat(self,state):
